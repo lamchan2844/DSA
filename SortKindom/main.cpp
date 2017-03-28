@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-03-15 14:04:43
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-03-19 14:32:18
+* @Last Modified time: 2017-03-28 14:57:48
 */
 
 #include <iostream>
@@ -34,7 +34,7 @@ int main(){
 			King.SelectionSort(arr,0,LEN);
 		}
 		stop = clock();
-		cout<<"time:"<<(double)(stop-start)<<" ms\n"<<endl;
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
 
 		cout<<"InsertSort:"<<endl;
 		start = clock();
@@ -45,7 +45,7 @@ int main(){
 			King.InsertSort(arr,0,LEN);
 		}
 		stop = clock();
-		cout<<"time:"<<stop-start<<" ms\n"<<endl;
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
 
 
 
@@ -58,7 +58,7 @@ int main(){
 			King.ShellSort(arr,0,LEN);
 		}
 		stop = clock();
-		cout<<"time:"<<stop-start<<" ms\n"<<endl;
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
 
 		cout<<"MergeSort:"<<endl;
 		start = clock();
@@ -69,7 +69,7 @@ int main(){
 			King.MergeSort(arr,0,LEN);
 		}
 		stop = clock();
-		cout<<"time:"<<stop-start<<" ms\n"<<endl;
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
 
 		cout<<"MergeSortBU:"<<endl;
 		start = clock();
@@ -80,7 +80,7 @@ int main(){
 			King.MergeSortBU(arr,0,LEN);
 		}
 		stop = clock();
-		cout<<"time:"<<stop-start<<" ms\n"<<endl;
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
 
 		cout<<"QuickSort:"<<endl;
 		start = clock();
@@ -92,7 +92,7 @@ int main(){
 			King.QuickSort(arr,0,LEN);
 		}
 		stop = clock();
-		cout<<"time:"<<stop-start<<" ms\n"<<endl;
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
 
 		cout<<"QuickSort_Insert:"<<endl;
 		start = clock();
@@ -104,7 +104,7 @@ int main(){
 		}
 		stop = clock();
 	//King.printArr(arr, 0, LEN);
-		cout<<"time:"<<stop-start<<" ms\n"<<endl;
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
 
 		cout<<"QuickSort_3Way:"<<endl;
 		start = clock();
@@ -115,7 +115,18 @@ int main(){
 			King.QuickSort_3Way(arr,0,LEN);
 		}
 		stop = clock();
-		cout<<"time:"<<stop-start<<" ms\n"<<endl;
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
+
+		cout<<"HeapSort:"<<endl;
+		start = clock();
+		for(int i = 0;i<COUNT;i++)
+		{
+			srand((int)clock());
+			arr = randomArr(MAX, LEN);
+			King.HeapSort(arr,0,LEN);
+		}
+		stop = clock();
+		cout<<"time:"<<(stop-start)/(CLOCKS_PER_SEC+0.0)<<" s("<<(stop-start)/(CLOCKS_PER_SEC+0.0)*1000<<"ms)\n"<<endl;
 
 		break;
 
@@ -123,9 +134,10 @@ int main(){
 		srand((int)clock());
 		arr = randomArr(MAX, LEN);
 		King.printArr(arr, 0, LEN);
-		King.MergeSort(arr,0,LEN);
+		King.HeapSort(arr,0,LEN);
 		King.printArr(arr, 0, LEN);
 		break;
+
 		default:
 		return 0;
 	}

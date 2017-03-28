@@ -22,6 +22,9 @@ public:
 	void QuickSort_Insert(T *arr, int lo, int hi);
 	int partition(T *arr, int lo, int hi);
 	void QuickSort_3Way(T* arr, int lo, int hi);
+	void swim(T* arr, int k , int lo);
+	void sink(T* arr, int k, int lo, int hi);
+	void HeapSort(T* arr, int lo, int hi);
 
 };
 template <typename T>
@@ -247,3 +250,61 @@ void SortKing<T>::QuickSort_3Way(T* arr, int lo, int hi)
 	QuickSort_3Way(arr, gt, hi);
 }
 
+
+/*
+* 堆
+*/
+
+/*
+* 上浮操作
+* 将第k个位置的元素上浮到合适位置
+*/
+template <typename T>
+void SortKing<T>::swim(T* arr, int k,int lo)
+{
+	while(k>lo&&arr[k]>arr[(k-1)/2])
+	{
+		exchange(arr, k, (k-1)/2);
+		k = (k-1)/2;
+	}
+}
+/*
+* 下沉操作
+* 将第k个位置处的元素下沉到合适位置
+*/
+template <typename T>
+void SortKing<T>::sink(T* arr, int k, int lo, int hi)
+{
+	while(2*k+1<(hi-lo))
+	{
+		int j = 2*k+1;
+		if(j<hi-lo-1&&arr[j]<arr[j+1])
+			j++;
+		if(arr[k]>arr[j])
+			break;
+		exchange(arr, k, j);
+		k = j;
+	}
+}
+
+/*
+* 堆排序
+* O(nLogn),不适合少量数据
+*/
+
+template <typename T>
+void SortKing<T>::HeapSort(T* arr, int lo, int hi)
+{
+	int N = hi-lo;
+	//构建堆
+	int k = N/2-1;
+	while((k--)>0)
+	{
+		sink(arr,k,lo,hi);
+	}
+	while((N--)>lo)
+	{
+		exchange(arr,0,lo+N);
+		sink(arr,0,0,N);
+	}
+}
